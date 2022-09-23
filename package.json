@@ -1,13 +1,25 @@
 {
-  "name": "smsdev-node",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "smsdev",
+  "version": "0.1.0",
+  "description": "Typed NodeJS adapter for SMS Dev service",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lunatupini/smsdev-node"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "sms",
+    "smsdev",
+    "adapter"
+  ],
+  "author": {
+    "name": "Luna Tupini",
+    "email": "itupini@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "typescript": "^4.8.3"
