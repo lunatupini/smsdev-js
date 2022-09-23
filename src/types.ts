@@ -1,6 +1,10 @@
 export type SmsTypes = 9
 export type SendOptions = {
   type: SmsTypes
+  /** Private reference to identify the message */
+  reference?: string
+  flash?: number
+  schedule?: Date
 }
 
 export type SendResponse = ReadonlyArray<{
@@ -23,10 +27,6 @@ export type MessageParams = {
   /** Sms message content */
   msg: string
   options: SendOptions
-  /** Private reference to identify the message */
-  reference?: string
-  flash?: number
-  schedule?: Date
 }
 
 export type ApiMessageParams = {
