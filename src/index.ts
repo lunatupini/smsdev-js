@@ -1,3 +1,4 @@
+import { getCancel } from './cancel'
 import { getSend } from './sendSms'
 
 export interface Options {
@@ -7,9 +8,10 @@ export interface Options {
 
 export const smsDev = ({ key }: Options) => {
   /** Send one or more SMS */
+  const cancel = getCancel(key)
   const send = getSend(key)
 
-  return { send }
+  return { cancel, send }
 }
 
 export * from './types'

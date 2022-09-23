@@ -42,6 +42,21 @@ export type ApiMessageParams = {
 
 export interface Send {
   (params: MessageParams): Promise<SendResponse>
-  (params: ReadonlyArray<MessageParams>): Promise<SendResponse>
+  (params: MessageParams[]): Promise<SendResponse>
 }
-export type GetSend = (apiKey: string) => Send
+
+export type CancelResponse = ReadonlyArray<{
+  /** Request status */
+  situacao: 'OK' | 'ERRO'
+
+  codigo: string
+
+  /** Delivery Id */
+  id: string
+
+  /** Status description */
+  descricao: string
+}>
+export interface Cancel {
+  (id: number[]): Promise<CancelResponse>
+}

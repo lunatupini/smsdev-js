@@ -2,7 +2,7 @@ import axios from 'axios'
 import dayjs from 'dayjs'
 
 import { apiUrl } from './common'
-import { ApiMessageParams, GetSend, MessageParams, SendResponse } from './types'
+import { ApiMessageParams, MessageParams, Send, SendResponse } from './types'
 
 const getPhone = (phone: string | number) => (typeof phone === 'string' ? phone : phone.toString())
 const parseMessage = (message: MessageParams, key: string): ApiMessageParams => ({
@@ -16,6 +16,7 @@ const parseMessage = (message: MessageParams, key: string): ApiMessageParams => 
   jobtime: message.schedule && dayjs(message.schedule).format('HH:mm'),
 })
 
+type GetSend = (key: string) => Send
 export const getSend: GetSend = (key) => async (messages) => {
   const request = Array.isArray(messages) ? messages.map((msg) => parseMessage(msg, key)) : parseMessage(messages, key)
 
