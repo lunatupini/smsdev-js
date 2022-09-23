@@ -13,5 +13,4 @@ export const smsDev = ({ key }: Options) => {
 }
 
 export * from './types'
-
 export default smsDev
