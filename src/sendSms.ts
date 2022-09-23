@@ -1,14 +1,23 @@
 import axios from 'axios'
+import dayjs from 'dayjs'
 
 import { apiUrl } from './common'
-import { GetSend, SendResponse } from './types'
+import { ApiMessageParams, GetSend, MessageParams, SendResponse } from './types'
 
 const getPhone = (phone: string | number) => (typeof phone === 'string' ? phone : phone.toString())
+const parseMessage = (message: MessageParams, key: string): ApiMessageParams => ({
+  key,
+  msg: message.msg,
+  number: getPhone(message.phone),
+  type: message.options.type || 9,
+  flash: message.flash,
+  refer: message.reference,
+  jobdate: message.schedule && dayjs(message.schedule).format('DD/MM/YY'),
+  jobtime: message.schedule && dayjs(message.schedule).format('HH:mm'),
+})
 
 export const getSend: GetSend = (key) => async (messages) => {
-  const request = Array.isArray(messages)
-    ? messages.map((msg) => ({ ...msg, phone: getPhone(msg.phone), key }))
-    : messages
+  const request = Array.isArray(messages) ? messages.map((msg) => parseMessage(msg, key)) : parseMessage(messages, key)
 
   const { data } = await axios.post<SendResponse>(apiUrl + '/send', request)
 

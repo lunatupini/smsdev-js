@@ -23,6 +23,21 @@ export type MessageParams = {
   /** Sms message content */
   msg: string
   options: SendOptions
+  /** Private reference to identify the message */
+  reference?: string
+  flash?: number
+  schedule?: Date
+}
+
+export type ApiMessageParams = {
+  key: string
+  type: number
+  number: string
+  msg: string
+  refer?: string
+  flash?: number
+  jobdate?: string
+  jobtime?: string
 }
 
 export interface Send {
