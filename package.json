@@ -1,5 +1,5 @@
 {
-  "name": "smsdev",
+  "name": "smsdev-js",
   "version": "0.1.0",
   "description": "Typed NodeJS adapter for SMS Dev service",
   "main": "dist/index.js",
@@ -10,7 +10,8 @@
   },
   "scripts": {
     "lint": "eslint ./src",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "pnpm lint && pnpm build"
   },
   "keywords": [
     "sms",
