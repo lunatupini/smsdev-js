@@ -11,11 +11,11 @@ const parseMessage = (message: MessageParams, key: string): ApiMessageParams => 
     key,
     msg: message.msg,
     number: getPhone(message.phone),
-    type: message.options.type || 9,
-    flash: options.flash,
-    refer: options.reference,
-    jobdate: options.schedule && dayjs(options.schedule).format('DD/MM/YY'),
-    jobtime: options.schedule && dayjs(options.schedule).format('HH:mm'),
+    type: options?.type || 9,
+    flash: options?.flash,
+    refer: options?.reference,
+    jobdate: options?.schedule && dayjs(options.schedule).format('DD/MM/YY'),
+    jobtime: options?.schedule && dayjs(options.schedule).format('HH:mm'),
   }
 }
 

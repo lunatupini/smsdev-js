@@ -1,6 +1,6 @@
 export type SmsTypes = 9
 export type SendOptions = {
-  type: SmsTypes
+  type?: SmsTypes
   /** Private reference to identify the message */
   reference?: string
   flash?: number
@@ -26,7 +26,7 @@ export type MessageParams = {
 
   /** Sms message content */
   msg: string
-  options: SendOptions
+  options?: SendOptions
 }
 
 export type ApiMessageParams = {
