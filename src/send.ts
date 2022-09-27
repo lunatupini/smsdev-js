@@ -1,7 +1,6 @@
-import axios from 'axios'
 import dayjs from 'dayjs'
 
-import { apiUrl } from './common'
+import { api } from './common'
 import { ApiMessageParams, MessageParams, Send, SendResponse } from './types'
 
 const getPhone = (phone: string | number) => (typeof phone === 'string' ? phone : phone.toString())
@@ -19,11 +18,11 @@ const parseMessage = (message: MessageParams, key: string): ApiMessageParams => 
   }
 }
 
-type GetSend = (key: string) => Send
-export const getSend: GetSend = (key) => async (messages) => {
+type SendWithKey = (key: string) => Send
+export const send: SendWithKey = (key) => async (messages) => {
   const request = Array.isArray(messages) ? messages.map((msg) => parseMessage(msg, key)) : parseMessage(messages, key)
 
-  const { data } = await axios.post<SendResponse>(apiUrl + '/send', request)
+  const { data } = await api.post<SendResponse>('/send', request)
 
   return data
 }

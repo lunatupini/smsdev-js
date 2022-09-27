@@ -1,18 +1,13 @@
-import { getCancel } from './cancel'
-import { getSend } from './sendSms'
+import { cancel } from './cancel'
+import { inbox } from './inbox'
+import { send } from './send'
 
 export interface Options {
   /** Api Key */
   key: string
 }
 
-export const smsDev = ({ key }: Options) => {
-  /** Send one or more SMS */
-  const cancel = getCancel(key)
-  const send = getSend(key)
-
-  return { cancel, send }
-}
+export const smsDev = ({ key }: Options) => ({ cancel: cancel(key), send: send(key), inbox: inbox(key) })
 
 export * from './types'
 export default smsDev
